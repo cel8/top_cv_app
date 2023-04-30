@@ -1,7 +1,11 @@
 import './App.css';
 import React, { Component } from 'react';
 import PersonalInformation from './components/PersonalInformation';
+import EducationExperience from './components/EducationExperience';
+import WorkingExperience from './components/WorkingExperience';
 import PersonalInformationDisplay from './components/PersonalInformationDisplay';
+import EducationExperienceDisplay from './components/EducationExperienceDisplay';
+import WorkingExperienceDisplay from './components/WorkingExperienceDisplay';
 
 export default class App extends Component {
   constructor(props) {
@@ -39,9 +43,13 @@ export default class App extends Component {
         </header>
         <div>
           <PersonalInformation keyUpdate={keyPI} onUpdateData={this.onUpdateData}/>
+          <EducationExperience keyUpdate={keyEE} onUpdateData={this.onUpdateData}/>
+          <WorkingExperience keyUpdate={keyWE} onUpdateData={this.onUpdateData}/>
         </div>
         <div>
           <PersonalInformationDisplay data={this.state.pi}/>
+          <EducationExperienceDisplay data={this.state.ee}/>
+          <WorkingExperienceDisplay data={this.state.we}/>
         </div>
       </div>
     );
