@@ -1,4 +1,6 @@
 import { Component } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight, faCircleXmark, faSquarePen } from '@fortawesome/free-solid-svg-icons';
 
 const patterns = {
   firstName: /^[a-z\s']{1,30}$/i,
@@ -35,6 +37,7 @@ export default class PersonalInformation extends Component {
         valid: 'invalid'
       },
       loaded: false,
+      editable: true,
       displayPI: {
         firstName: '',
         lastName: '',
@@ -132,43 +135,46 @@ export default class PersonalInformation extends Component {
     this.setState({email: {text: email, valid: 'valid'}});
     this.setState({phone: {text: phone, valid: 'valid'}});
     this.setState({location: {text: location, valid: 'valid'}});
+    this.setState({editable: true});
   }
 
   onReset(event) {
     event.preventDefault();
     this.#resetFormState();
-    this.setState({loaded: false});
   }
 
   onSubmit(event) {
     event.preventDefault();
     if (!this.#isFormValid()) return;
     this.setState({loaded: true});
+    this.setState({editable: false});
     this.#setDisplayPIState();
   }
 
   render() {
     let btnEdit;
-    const { firstName, lastName, phone, email, location, loaded } = this.state;
+    const { firstName, lastName, phone, email, location, loaded, editable } = this.state;
     if (loaded) {
-      btnEdit = <button onClick={this.onEdit}>Edit</button>
+      btnEdit = <button onClick={this.onEdit}><FontAwesomeIcon icon={faSquarePen}/> Edit</button>
     }
     return (
-      <form className="personal-information-container">
-        <label htmlFor="pi-first-name">First name</label>
-        <input id="pi-first-name" name="firstName" type="text" value={firstName.text} className={firstName.valid} onChange={this.onChange}></input>
-        <label htmlFor="pi-last-name">Last name</label>
-        <input id="pi-last-name" name="lastName" type="text" value={lastName.text} className={lastName.valid} onChange={this.onChange}></input>
-        <label htmlFor="pi-email">E-mail</label>
-        <input id="pi-email" name="email" type="text" value={email.text} className={email.valid} onChange={this.onChange}></input>
-        <label htmlFor="pi-phone">Phone number</label>
-        <input id="pi-phone" name="phone" type="text" value={phone.text} className={phone.valid} onChange={this.onChange}></input>
-        <label htmlFor="pi-location">Location</label>
-        <input id="pi-location" name="location" type="text" value={location.text} className={location.valid} onChange={this.onChange}></input>
+      <div>
         {btnEdit}
-        <button type="submit" onClick={this.onSubmit}>Submit</button>
-        <button onClick={this.onReset}>Cancel</button>
-      </form>
+        <form className="personal-information-container">
+          <label htmlFor="pi-first-name">First name</label>
+          <input id="pi-first-name" name="firstName" type="text" value={firstName.text} className={firstName.valid} onChange={this.onChange}></input>
+          <label htmlFor="pi-last-name">Last name</label>
+          <input id="pi-last-name" name="lastName" type="text" value={lastName.text} className={lastName.valid} onChange={this.onChange}></input>
+          <label htmlFor="pi-email">E-mail</label>
+          <input id="pi-email" name="email" type="text" value={email.text} className={email.valid} onChange={this.onChange}></input>
+          <label htmlFor="pi-phone">Phone number</label>
+          <input id="pi-phone" name="phone" type="text" value={phone.text} className={phone.valid} onChange={this.onChange}></input>
+          <label htmlFor="pi-location">Location</label>
+          <input id="pi-location" name="location" type="text" value={location.text} className={location.valid} onChange={this.onChange}></input>
+          <button disabled={!editable} type="submit" onClick={this.onSubmit}><FontAwesomeIcon icon={faArrowRight}/> Submit</button>
+          <button disabled={!editable} onClick={this.onReset}><FontAwesomeIcon icon={faCircleXmark}/> Cancel</button>
+        </form>
+      </div>
     );
   }
 }
