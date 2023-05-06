@@ -163,15 +163,15 @@ export default class PersonalInformation extends Component {
         </div>
         <form className="edit-form">
           <label htmlFor="pi-first-name">First name</label>
-          <input id="pi-first-name" name="firstName" type="text" value={firstName.text} className={firstName.valid} onChange={this.onChange}></input>
+          <input id="pi-first-name" name="firstName" type="text" value={firstName.text} placeholder="Name" className={firstName.valid} onChange={this.onChange}></input>
           <label htmlFor="pi-last-name">Last name</label>
-          <input id="pi-last-name" name="lastName" type="text" value={lastName.text} className={lastName.valid} onChange={this.onChange}></input>
+          <input id="pi-last-name" name="lastName" type="text" value={lastName.text} placeholder="Surname" className={lastName.valid} onChange={this.onChange}></input>
           <label htmlFor="pi-email">E-mail</label>
-          <input id="pi-email" name="email" type="text" value={email.text} className={email.valid} onChange={this.onChange}></input>
+          <input id="pi-email" name="email" type="text" value={email.text} placeholder="mailname@mail.to" className={email.valid} onChange={this.onChange}></input>
           <label htmlFor="pi-phone">Phone number</label>
-          <input id="pi-phone" name="phone" type="text" value={phone.text} className={phone.valid} onChange={this.onChange}></input>
+          <input id="pi-phone" name="phone" type="text" value={phone.text} placeholder="+XXYYYZZZAABB" className={phone.valid} onChange={this.onChange}></input>
           <label htmlFor="pi-location">Location</label>
-          <input id="pi-location" name="location" type="text" value={location.text} className={location.valid} onChange={this.onChange}></input>
+          <input id="pi-location" name="location" type="text" value={location.text} placeholder="Name" className={location.valid} onChange={this.onChange}></input>
           <button disabled={!editable} onClick={this.onReset}><FontAwesomeIcon icon={faCircleXmark}/> Cancel</button>
           <button disabled={!editable} type="submit" onClick={this.onSubmit}><FontAwesomeIcon icon={faArrowRight}/> Submit</button>
         </form>

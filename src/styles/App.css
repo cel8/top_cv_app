@@ -30,7 +30,11 @@
 
 .edit-container {
   max-width: 200vh;
-  min-width: 10vh;
+  min-width: 75vh;
+  @media (max-width: 1000px) {
+    min-width: 10vh;
+  }
+  text-align: center;
   padding: 0rem 2rem 2rem 2rem;
   margin-bottom: 0.5rem;
   border: 0.1rem solid black;
@@ -41,7 +45,10 @@
 
 .display-container {
   max-width: 200vh;
-  min-width: 10vh;
+  min-width: 75vh;
+  @media (max-width: 1000px) {
+    min-width: 10vh;
+  }
   margin-bottom: 0.5rem;
   display: flex;
   padding: 1rem;

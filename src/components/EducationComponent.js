@@ -9,8 +9,8 @@ const patterns = {
   degree: /^[a-z\s']{1,50}$/i,
   thesis: /^[a-z\s']{1,50}$/i,
   city: /^[a-zA-Z0-9\s,'-]*$/i,
-  fromData: /^\d{2}-\d{4}$/i,
-  toData: /^(\d{2}-\d{4}|present)$/i
+  fromData: /^\d{4}$/i,
+  toData: /^(\d{4}|present)$/i
 };
 
 export default class EducationComponent extends Component {
@@ -169,17 +169,17 @@ export default class EducationComponent extends Component {
     return (
       <form className="education-item-form">
         <label htmlFor="education-schoolname">University or School name</label>
-        <input id="education-schoolname" name="schoolname" type="text" value={schoolname.text} className={schoolname.valid} onChange={this.onChange}></input>
+        <input id="education-schoolname" name="schoolname" type="text" value={schoolname.text} placeholder="Name" className={schoolname.valid} onChange={this.onChange}></input>
         <label htmlFor="education-city">City</label>
-        <input id="education-city" name="city" type="text" value={city.text} className={city.valid} onChange={this.onChange}></input>
+        <input id="education-city" name="city" type="text" value={city.text} placeholder="Name" className={city.valid} onChange={this.onChange}></input>
         <label htmlFor="education-degree">Degree title</label>
-        <input id="education-degree" name="degree" type="text" value={degree.text} className={degree.valid} onChange={this.onChange}></input>
+        <input id="education-degree" name="degree" type="text" value={degree.text} placeholder="Qualification" className={degree.valid} onChange={this.onChange}></input>
         <label htmlFor="education-thesis">Thesis title</label>
-        <input id="education-thesis" name="thesis" type="text" value={thesis.text} className={thesis.valid} onChange={this.onChange}></input>
-        <label htmlFor="education-fromData">From (MM-YYYY):</label>
-        <input id="education-fromData" name="fromData" type="text" value={fromData.text} className={fromData.valid} onChange={this.onChange}></input>
-        <label htmlFor="education-toData">To (MM-YYYY or present):</label>
-        <input id="education-toData" name="toData" type="text" value={toData.text} className={toData.valid} onChange={this.onChange}></input>
+        <input id="education-thesis" name="thesis" type="text" value={thesis.text} placeholder="Title" className={thesis.valid} onChange={this.onChange}></input>
+        <label htmlFor="education-fromData">From:</label>
+        <input id="education-fromData" name="fromData" type="text" value={fromData.text} placeholder="YYYY" className={fromData.valid} onChange={this.onChange}></input>
+        <label htmlFor="education-toData">To:</label>
+        <input id="education-toData" name="toData" type="text" value={toData.text} placeholder="YYYY or Present" className={toData.valid} onChange={this.onChange}></input>
         <button disabled={!this.props.editable} onClick={this.onReset}><FontAwesomeIcon icon={faCircleXmark}/> Cancel</button>
         <button disabled={!this.props.editable} type="submit" onClick={this.onSubmit}><FontAwesomeIcon icon={faArrowRight}/> Submit</button>
       </form>

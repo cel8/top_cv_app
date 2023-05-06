@@ -156,15 +156,15 @@ export default class WorkComponent extends Component {
     return (
       <form className="work-item-form">
         <label htmlFor="work-position">Position title</label>
-        <input id="work-position" name="position" type="text" value={position.text} className={position.valid} onChange={this.onChange}></input>
+        <input id="work-position" name="position" type="text" value={position.text} placeholder="Role name" className={position.valid} onChange={this.onChange}></input>
         <label htmlFor="work-company">Company name</label>
-        <input id="work-company" name="company" type="text" value={company.text} className={company.valid} onChange={this.onChange}></input>
+        <input id="work-company" name="company" type="text" value={company.text} placeholder="Name" className={company.valid} onChange={this.onChange}></input>
         <label htmlFor="work-city">City</label>
-        <input id="work-city" name="city" type="text" value={city.text} className={city.valid} onChange={this.onChange}></input>
-        <label htmlFor="work-fromData">From (MM-YYYY):</label>
-        <input id="work-fromData" name="fromData" type="text" value={fromData.text} className={fromData.valid} onChange={this.onChange}></input>
-        <label htmlFor="work-toData">To (MM-YYYY or present):</label>
-        <input id="work-toData" name="toData" type="text" value={toData.text} className={toData.valid} onChange={this.onChange}></input>
+        <input id="work-city" name="city" type="text" value={city.text} placeholder="Name" className={city.valid} onChange={this.onChange}></input>
+        <label htmlFor="work-fromData">From:</label>
+        <input id="work-fromData" name="fromData" type="text" value={fromData.text} placeholder="YYYY" className={fromData.valid} onChange={this.onChange}></input>
+        <label htmlFor="work-toData">To:</label>
+        <input id="work-toData" name="toData" type="text" value={toData.text} placeholder="MM-YYYY or Present" className={toData.valid} onChange={this.onChange}></input>
         <button disabled={!this.props.editable} onClick={this.onReset}><FontAwesomeIcon icon={faCircleXmark}/> Cancel</button>
         <button disabled={!this.props.editable} type="submit" onClick={this.onSubmit}><FontAwesomeIcon icon={faArrowRight}/> Submit</button>
       </form>
