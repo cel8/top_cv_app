@@ -45,13 +45,13 @@ export default class App extends Component {
         <div className="App-cv">
           <div>
             <PersonalInformation keyUpdate={keyPI} onUpdateData={this.onUpdateData}/>
-            <EducationExperience keyUpdate={keyEE} onUpdateData={this.onUpdateData}/>
             <WorkingExperience keyUpdate={keyWE} onUpdateData={this.onUpdateData}/>
+            <EducationExperience keyUpdate={keyEE} onUpdateData={this.onUpdateData}/>
           </div>
           <div>
             <PersonalInformationDisplay data={this.state.pi}/>
-            <EducationExperienceDisplay data={this.state.ee}/>
             <WorkingExperienceDisplay data={this.state.we}/>
+            <EducationExperienceDisplay data={this.state.ee}/>
           </div>
         </div>
         <footer className="App-footer">
