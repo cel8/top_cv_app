@@ -5,7 +5,7 @@ import "./../styles/App.css";
 import "./../styles/EducationExperience.css";
 
 const patterns = {
-  schoolname: /^[a-z\s']{1,30}$/i,
+  schoolname: /^[a-z\s']{1,50}$/i,
   degree: /^[a-z\s']{1,50}$/i,
   thesis: /^[a-z\s']{1,50}$/i,
   city: /^[a-zA-Z0-9\s,'-]*$/i,

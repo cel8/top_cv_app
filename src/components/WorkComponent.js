@@ -162,7 +162,7 @@ export default class WorkComponent extends Component {
         <label htmlFor="work-city">City</label>
         <input id="work-city" name="city" type="text" value={city.text} placeholder="Name" className={city.valid} onChange={this.onChange}></input>
         <label htmlFor="work-fromData">From:</label>
-        <input id="work-fromData" name="fromData" type="text" value={fromData.text} placeholder="YYYY" className={fromData.valid} onChange={this.onChange}></input>
+        <input id="work-fromData" name="fromData" type="text" value={fromData.text} placeholder="MM-YYYY" className={fromData.valid} onChange={this.onChange}></input>
         <label htmlFor="work-toData">To:</label>
         <input id="work-toData" name="toData" type="text" value={toData.text} placeholder="MM-YYYY or Present" className={toData.valid} onChange={this.onChange}></input>
         <button disabled={!this.props.editable} onClick={this.onReset}><FontAwesomeIcon icon={faCircleXmark}/> Cancel</button>
