@@ -1,22 +1,28 @@
 import { Component } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faSquarePhoneFlip, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import "./../styles/App.css";
+import "./../styles/PersonalInformation.css";
 
 export default class PersonalInformationDisplay extends Component {
   render() {
     const { data } = this.props;
-    const firstName = data ? data.firstName : '';
-    const lastName  = data ? data.lastName  : '';
-    const email     = data ? data.email     : '';
-    const phone     = data ? data.phone     : '';
-    const location  = data ? data.location  : '';
+    const firstName = data ? data.firstName : 'First Name';
+    const lastName  = data ? data.lastName  : 'Last Name';
+    const email     = data ? data.email     : 'Email';
+    const phone     = data ? data.phone     : 'Phone';
+    const location  = data ? data.location  : 'Address';
     return (
-      <div>
+      <div className="display-container pi-display">
         <div className="fullname">
           <div>{firstName}</div>
           <div>{lastName}</div>
         </div>
-        <div>{email}</div>
-        <div>{phone}</div>
-        <div>{location}</div>
+        <div className="extra-information">
+          <div><FontAwesomeIcon icon={faEnvelope} size="lg"/> {email}</div>
+          <div><FontAwesomeIcon icon={faSquarePhoneFlip} size="lg"/> {phone}</div>
+          <div><FontAwesomeIcon icon={faLocationDot} size="lg"/> {location}</div>
+        </div>
       </div>
     );
   }

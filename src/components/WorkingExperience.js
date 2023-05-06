@@ -4,6 +4,8 @@ import WorkComponent from "./WorkComponent";
 import uniqid from 'uniqid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquarePlus, faSquarePen, faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
+import "./../styles/App.css";
+import "./../styles/WorkingExperience.css";
 
 export default class WorkingExperience extends Component {
   constructor(props) {
@@ -84,14 +86,13 @@ export default class WorkingExperience extends Component {
   }
 
   render() {
-    let btnAddWork;
     const last = this.state.works.at(-1);
     const works = [];
     for(let i = 0; i < this.state.works.length; i+=1) {
       const work = this.state.works[i];
       const uuid = work.uuid;
       const divCtrlBtn = (
-        <div>
+        <div className="edit-list-items-ctrl">
           <button disabled={!work.data} onClick={() => this.onDeleteWorkItem(uuid)}><FontAwesomeIcon icon={faDeleteLeft}/></button>
           <button disabled={!work.data} onClick={() => this.onEditWorkItem(uuid)}><FontAwesomeIcon icon={faSquarePen}/></button>
         </div>
@@ -103,13 +104,13 @@ export default class WorkingExperience extends Component {
         </div>
       );
     }
-    if (last && last.data) {
-      btnAddWork = <button onClick={this.onAddWorkItem}><FontAwesomeIcon icon={faSquarePlus}/> Add work</button>
-    }
     return (
-      <div>
-        <div>{works}</div>
-        {btnAddWork}
+      <div className="edit-container">
+        <div className="edit-header">
+          <p>Working Experience:</p>
+        </div>
+        <div className="list-items">{works}</div>
+        <button disabled={!(last && last.data)} className="list-items-add" onClick={this.onAddWorkItem}><FontAwesomeIcon icon={faSquarePlus} size="lg"/> Add work</button>
       </div>
     );
   }

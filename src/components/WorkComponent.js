@@ -1,6 +1,8 @@
 import { Component } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import "./../styles/App.css";
+import "./../styles/WorkingExperience.css";
 
 const patterns = {
   position: /^[a-z\s']{1,30}$/i,
@@ -152,7 +154,7 @@ export default class WorkComponent extends Component {
   render() {
     const { position, company, city, fromData, toData } = this.state;
     return (
-      <form className="work-item-container">
+      <form className="work-item-form">
         <label htmlFor="work-position">Position title</label>
         <input id="work-position" name="position" type="text" value={position.text} className={position.valid} onChange={this.onChange}></input>
         <label htmlFor="work-company">Company name</label>
@@ -163,8 +165,8 @@ export default class WorkComponent extends Component {
         <input id="work-fromData" name="fromData" type="text" value={fromData.text} className={fromData.valid} onChange={this.onChange}></input>
         <label htmlFor="work-toData">To (MM-YYYY or present):</label>
         <input id="work-toData" name="toData" type="text" value={toData.text} className={toData.valid} onChange={this.onChange}></input>
-        <button disabled={!this.props.editable} type="submit" onClick={this.onSubmit}><FontAwesomeIcon icon={faArrowRight}/> Submit</button>
         <button disabled={!this.props.editable} onClick={this.onReset}><FontAwesomeIcon icon={faCircleXmark}/> Cancel</button>
+        <button disabled={!this.props.editable} type="submit" onClick={this.onSubmit}><FontAwesomeIcon icon={faArrowRight}/> Submit</button>
       </form>
     );
   }

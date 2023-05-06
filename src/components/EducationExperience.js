@@ -4,6 +4,8 @@ import EducationComponent from "./EducationComponent";
 import uniqid from 'uniqid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquarePlus, faSquarePen, faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
+import "./../styles/App.css";
+import "./../styles/EducationExperience.css";
 
 export default class EducationExperience extends Component {
   constructor(props) {
@@ -84,14 +86,13 @@ export default class EducationExperience extends Component {
   }
 
   render() {
-    let btnAddEducation;
     const last = this.state.educationItems.at(-1);
     const educationItems = [];
     for(let i = 0; i < this.state.educationItems.length; i+=1) {
       const education = this.state.educationItems[i];
       const uuid = education.uuid;
       const divCtrlBtn = (
-        <div>
+        <div className="edit-list-items-ctrl">
           <button disabled={!education.data} onClick={() => this.onDeleteEducationItem(uuid)}><FontAwesomeIcon icon={faDeleteLeft}/></button>
           <button disabled={!education.data} onClick={() => this.onEditEducationItem(uuid)}><FontAwesomeIcon icon={faSquarePen}/></button>
         </div>
@@ -103,13 +104,13 @@ export default class EducationExperience extends Component {
         </div>
       );
     }
-    if (last && last.data) {
-      btnAddEducation = <button onClick={this.onAddEducationItem}><FontAwesomeIcon icon={faSquarePlus}/> Add education</button>
-    }
     return (
-      <div>
-        <div>{educationItems}</div>
-        {btnAddEducation}
+      <div className="edit-container">
+        <div className="edit-header">
+          <p>Education:</p>
+        </div>
+        <div className="list-items">{educationItems}</div>
+        <button disabled={!(last && last.data)} className="list-items-add" onClick={this.onAddEducationItem}><FontAwesomeIcon icon={faSquarePlus} size="lg"/> Add education</button>
       </div>
     );
   }

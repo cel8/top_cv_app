@@ -1,6 +1,8 @@
 
 import { Component } from "react";
 import uniqid from 'uniqid';
+import "./../styles/App.css";
+import "./../styles/EducationExperience.css";
 
 export default class EducationExperienceDisplay extends Component {
   render() {
@@ -11,20 +13,23 @@ export default class EducationExperienceDisplay extends Component {
       for(let i = 0; i < data.length; i+=1) {
         const education = data[i];
         educationItems.push(
-          <div key={uniqid()}>
-            <div>{education.schoolname}</div>
-            <div>{education.city}</div>
-            <div>{education.degree}</div>
+          <div className="display-item" key={uniqid()}>
+            <div className="school"><div className="schoolname">{education.schoolname}</div><div>in {education.city}</div></div>
+            <div className="role">{education.degree}</div>
             <div>{education.thesis}</div>
-            <div>{education.fromData}</div>
-            <div>{education.toData}</div>
+            <div>{education.fromData} - {education.toData}</div>
           </div>
         );
       }
     }
 
     return (
-      <div>{educationItems}</div>
+      <div className="display-container display-items">
+        <div className="display-header">
+          <p>Education:</p>
+        </div>
+        <div className="list-display-items">{educationItems}</div>
+      </div>
     );
   }
 }

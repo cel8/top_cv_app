@@ -1,6 +1,8 @@
 import { Component } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faCircleXmark, faSquarePen } from '@fortawesome/free-solid-svg-icons';
+import "./../styles/App.css";
+import "./../styles/PersonalInformation.css";
 
 const patterns = {
   firstName: /^[a-z\s']{1,30}$/i,
@@ -152,15 +154,14 @@ export default class PersonalInformation extends Component {
   }
 
   render() {
-    let btnEdit;
     const { firstName, lastName, phone, email, location, loaded, editable } = this.state;
-    if (loaded) {
-      btnEdit = <button onClick={this.onEdit}><FontAwesomeIcon icon={faSquarePen}/> Edit</button>
-    }
     return (
-      <div>
-        {btnEdit}
-        <form className="personal-information-container">
+      <div className="edit-container">
+        <div className="edit-header">
+          <p>Personal Information:</p>
+          <button disabled={!loaded} onClick={this.onEdit}><FontAwesomeIcon icon={faSquarePen}/> Edit</button>
+        </div>
+        <form className="edit-form">
           <label htmlFor="pi-first-name">First name</label>
           <input id="pi-first-name" name="firstName" type="text" value={firstName.text} className={firstName.valid} onChange={this.onChange}></input>
           <label htmlFor="pi-last-name">Last name</label>
@@ -171,8 +172,8 @@ export default class PersonalInformation extends Component {
           <input id="pi-phone" name="phone" type="text" value={phone.text} className={phone.valid} onChange={this.onChange}></input>
           <label htmlFor="pi-location">Location</label>
           <input id="pi-location" name="location" type="text" value={location.text} className={location.valid} onChange={this.onChange}></input>
-          <button disabled={!editable} type="submit" onClick={this.onSubmit}><FontAwesomeIcon icon={faArrowRight}/> Submit</button>
           <button disabled={!editable} onClick={this.onReset}><FontAwesomeIcon icon={faCircleXmark}/> Cancel</button>
+          <button disabled={!editable} type="submit" onClick={this.onSubmit}><FontAwesomeIcon icon={faArrowRight}/> Submit</button>
         </form>
       </div>
     );

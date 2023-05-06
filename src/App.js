@@ -1,4 +1,3 @@
-import './App.css';
 import React, { Component } from 'react';
 import PersonalInformation from './components/PersonalInformation';
 import EducationExperience from './components/EducationExperience';
@@ -6,6 +5,9 @@ import WorkingExperience from './components/WorkingExperience';
 import PersonalInformationDisplay from './components/PersonalInformationDisplay';
 import EducationExperienceDisplay from './components/EducationExperienceDisplay';
 import WorkingExperienceDisplay from './components/WorkingExperienceDisplay';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import "./styles/App.css";
 
 export default class App extends Component {
   constructor(props) {
@@ -37,20 +39,24 @@ export default class App extends Component {
 
   render() {
     const { keyPI, keyEE, keyWE } = this.state.keys;
+    const curYear = new Date().getFullYear();
     return (
       <div className="App">
-        <header className="App-header">
-        </header>
-        <div>
-          <PersonalInformation keyUpdate={keyPI} onUpdateData={this.onUpdateData}/>
-          <EducationExperience keyUpdate={keyEE} onUpdateData={this.onUpdateData}/>
-          <WorkingExperience keyUpdate={keyWE} onUpdateData={this.onUpdateData}/>
+        <div className="App-cv">
+          <div>
+            <PersonalInformation keyUpdate={keyPI} onUpdateData={this.onUpdateData}/>
+            <EducationExperience keyUpdate={keyEE} onUpdateData={this.onUpdateData}/>
+            <WorkingExperience keyUpdate={keyWE} onUpdateData={this.onUpdateData}/>
+          </div>
+          <div>
+            <PersonalInformationDisplay data={this.state.pi}/>
+            <EducationExperienceDisplay data={this.state.ee}/>
+            <WorkingExperienceDisplay data={this.state.we}/>
+          </div>
         </div>
-        <div>
-          <PersonalInformationDisplay data={this.state.pi}/>
-          <EducationExperienceDisplay data={this.state.ee}/>
-          <WorkingExperienceDisplay data={this.state.we}/>
-        </div>
+        <footer className="App-footer">
+          <div>Copyright © {curYear} - Alessandro Celotti <a className="App-link" href="https://github.com/cel8"><FontAwesomeIcon icon={faGithub}/></a></div>
+        </footer>
       </div>
     );
   }

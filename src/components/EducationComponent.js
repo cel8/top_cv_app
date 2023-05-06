@@ -1,6 +1,8 @@
 import { Component } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import "./../styles/App.css";
+import "./../styles/EducationExperience.css";
 
 const patterns = {
   schoolname: /^[a-z\s']{1,30}$/i,
@@ -165,7 +167,7 @@ export default class EducationComponent extends Component {
   render() {
     const { schoolname, city, degree, thesis, fromData, toData } = this.state;
     return (
-      <form className="education-item-container">
+      <form className="education-item-form">
         <label htmlFor="education-schoolname">University or School name</label>
         <input id="education-schoolname" name="schoolname" type="text" value={schoolname.text} className={schoolname.valid} onChange={this.onChange}></input>
         <label htmlFor="education-city">City</label>
@@ -178,8 +180,8 @@ export default class EducationComponent extends Component {
         <input id="education-fromData" name="fromData" type="text" value={fromData.text} className={fromData.valid} onChange={this.onChange}></input>
         <label htmlFor="education-toData">To (MM-YYYY or present):</label>
         <input id="education-toData" name="toData" type="text" value={toData.text} className={toData.valid} onChange={this.onChange}></input>
-        <button disabled={!this.props.editable} type="submit" onClick={this.onSubmit}><FontAwesomeIcon icon={faArrowRight}/> Submit</button>
         <button disabled={!this.props.editable} onClick={this.onReset}><FontAwesomeIcon icon={faCircleXmark}/> Cancel</button>
+        <button disabled={!this.props.editable} type="submit" onClick={this.onSubmit}><FontAwesomeIcon icon={faArrowRight}/> Submit</button>
       </form>
     );
   }
