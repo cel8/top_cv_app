@@ -23,15 +23,10 @@ export default class WorkingExperience extends Component {
     this.onAddWorkItem    = this.onAddWorkItem.bind(this);
     this.onDeleteWorkItem = this.onDeleteWorkItem.bind(this);
     this.onEditWorkItem   = this.onEditWorkItem.bind(this);
-  }
-
-  childCallables = null;
-    
-  setChildCallables = (callables) => {
-     this.childCallables = callables;
+    this.childCallables = null;
   }
   
-  #editWorkItem(uuid, data = undefined, editable = undefined) {
+  #doEditWorkItem(uuid, data = undefined, editable = undefined) {
     // Get shallow copy
     const newWorks = this.state.works.slice();
     const idx = newWorks.findIndex((value) => value.uuid === uuid);
@@ -39,24 +34,23 @@ export default class WorkingExperience extends Component {
     if (data) newWorks[idx].data = data;
     if (undefined !== editable) newWorks[idx].editable = editable;
     this.setState({works: newWorks});
+    return newWorks;
+  }
+  
+  #doUpdateParentState(works) {
+    const data = [];
+    works.forEach((w) => {
+      if (w.data) data.push(w.data)
+    });
+    this.props.onUpdateData(this.props.keyUpdate, data);
   }
 
-  #editWorkItemSort(uuid, newData = undefined, editable = undefined) {
-    const work = this.state.works.find((value) => value.uuid === uuid);
-    const works = this.state.works.filter((value) => value.uuid !== uuid);
-    const newEditable = (undefined !== editable) ? editable : work.editable;
-    works.push({
-      data: newData || work.data,
-      uuid: work.uuid,
-      editable: newEditable,
-      count: work.count
-    });
-    const sortedWorks = works.sort((r1, r2) => (r1.count > r2.count) ? 1 : (r1.count < r2.count) ? -1 : 0);
-    this.setState({works: sortedWorks});
+  setChildCallables = (callables) => {
+    this.childCallables = callables;
   }
 
   onEditWorkItem(uuid) {
-    this.#editWorkItem(uuid, undefined, true);
+    this.#doEditWorkItem(uuid, undefined, true);
     this.childCallables.doEditForm();
   }
 
@@ -76,6 +70,7 @@ export default class WorkingExperience extends Component {
         }]
       });
     }
+    this.#doUpdateParentState(newWorks);
   }
 
   onAddWorkItem() {
@@ -84,7 +79,8 @@ export default class WorkingExperience extends Component {
   }
 
   onUpdateData(uuid, newData) {
-    this.#editWorkItem(uuid, newData, false);
+    const works = this.#doEditWorkItem(uuid, newData, false);
+    this.#doUpdateParentState(works);
   }
 
   render() {
